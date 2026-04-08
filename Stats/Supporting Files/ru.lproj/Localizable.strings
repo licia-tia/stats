@@ -518,3 +518,7 @@
 "Pink" = "Розовый";
 "Teal" = "Бирюзовый";
 "Indigo" = "Индиго";
+
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";

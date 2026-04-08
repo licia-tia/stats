@@ -518,3 +518,7 @@
 "Pink" = "ชมพู";
 "Teal" = "น้ำตาลเขียว";
 "Indigo" = "น้ำเงินม่วง";
+
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";

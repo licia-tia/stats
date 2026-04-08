@@ -518,3 +518,7 @@
 "Pink" = "गुलाबी";
 "Teal" = "टील";
 "Indigo" = "इंडिगो";
+
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";

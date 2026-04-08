@@ -518,3 +518,7 @@
 "Pink" = "粉色";
 "Teal" = "蓝绿色";
 "Indigo" = "靛蓝色";
+
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";

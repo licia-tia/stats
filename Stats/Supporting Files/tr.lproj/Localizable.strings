@@ -518,3 +518,7 @@
 "Pink" = "Pembe";
 "Teal" = "Ördekbaşı";
 "Indigo" = "Çivit";
+
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";
