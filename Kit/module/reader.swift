@@ -116,6 +116,7 @@ open class Reader<T: Codable>: NSObject, ReaderInternal_p {
         self.value = value
         if let value {
             self.callbackHandler(value)
+            AppState.shared.update(moduleKey: moduleKey, value: value)
             Remote.shared.send(key: moduleKey, value: value)
             if let ts = self.lastDBWrite, let interval = self.interval, Date().timeIntervalSince(ts) > interval * 10 {
                 DB.shared.insert(key: moduleKey, value: value, ts: self.history)

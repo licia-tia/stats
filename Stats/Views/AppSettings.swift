@@ -120,12 +120,12 @@ class ApplicationSettings: NSStackView {
             ))
         ]))
 
-        scrollView.stackView.addArrangedSubview(PreferencesSection(label: "Local export", [
-            PreferencesRow("Local Unix socket", component: switchView(
+        scrollView.stackView.addArrangedSubview(PreferencesSection(label: localizedString("Local export"), [
+            PreferencesRow(localizedString("Local Unix socket"), component: switchView(
                 action: #selector(self.toggleLocalSocketExportState),
                 state: self.localSocketExportState
             )),
-            PreferencesRow("Socket path", component: textView(LocalSocketExporter.shared.socketPath))
+            PreferencesRow(localizedString("Socket path"), component: textView(LocalSocketExporter.shared.socketPath))
         ]))
         
         self.combinedModulesView = PreferencesSection([

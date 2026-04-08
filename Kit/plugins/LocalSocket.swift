@@ -190,9 +190,9 @@ public class LocalSocketExporter {
             var yes: Int32 = 1
             setsockopt(client, SOL_SOCKET, SO_NOSIGPIPE, &yes, socklen_t(MemoryLayout<Int32>.size))
 
-            let flags = fcntl(client, F_GETFL, 0)
-            if flags >= 0 {
-                _ = fcntl(client, F_SETFL, flags | O_NONBLOCK)
+            let clientFlags = fcntl(client, F_GETFL, 0)
+            if clientFlags >= 0 {
+                _ = fcntl(client, F_SETFL, clientFlags & ~O_NONBLOCK)
             }
 
             self.clients.append(client)
@@ -235,8 +235,8 @@ public class LocalSocketExporter {
                     continue
                 }
 
-                if result == -1 && (errno == EAGAIN || errno == EWOULDBLOCK) {
-                    break
+                if result == -1 && errno == EINTR {
+                    continue
                 }
 
                 debug("local socket client disconnected", log: self.log)

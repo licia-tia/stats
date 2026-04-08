@@ -168,6 +168,9 @@
 "Share anonymous telemetry" = "Share anonymous telemetry";
 "Choose file" = "Choose file";
 "Stress tests" = "Stress tests";
+"Local export" = "Local export";
+"Local Unix socket" = "Local Unix socket";
+"Socket path" = "Socket path";
 
 // Dashboard
 "Serial number" = "Serial number";
