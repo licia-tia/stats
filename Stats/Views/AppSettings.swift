@@ -119,14 +119,6 @@ class ApplicationSettings: NSStackView {
                 state: self.systemWidgetsUpdatesState
             ))
         ]))
-
-        scrollView.stackView.addArrangedSubview(PreferencesSection(label: localizedString("Local export"), [
-            PreferencesRow(localizedString("Local Unix socket"), component: switchView(
-                action: #selector(self.toggleLocalSocketExportState),
-                state: self.localSocketExportState
-            )),
-            PreferencesRow(localizedString("Socket path"), component: textView(LocalSocketExporter.shared.socketPath))
-        ]))
         
         self.combinedModulesView = PreferencesSection([
             PreferencesRow(localizedString("Combined modules"), component: switchView(
@@ -215,6 +207,14 @@ class ApplicationSettings: NSStackView {
             tests.append(PreferencesRow(localizedString("GPU"), component: GPUButton))
         }
         scrollView.stackView.addArrangedSubview(PreferencesSection(label: localizedString("Stress tests"), tests))
+
+        scrollView.stackView.addArrangedSubview(PreferencesSection(label: localizedString("Local export"), [
+            PreferencesRow(localizedString("Local Unix socket"), component: switchView(
+                action: #selector(self.toggleLocalSocketExportState),
+                state: self.localSocketExportState
+            )),
+            PreferencesRow(localizedString("Socket path"), component: textView(LocalSocketExporter.shared.socketPath))
+        ]))
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.toggleUninstallHelperButton), name: .fanHelperState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.handleRemoteState), name: .remoteState, object: nil)
