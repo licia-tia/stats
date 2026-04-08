@@ -71,6 +71,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
         }
         self.defaultValues()
         self.icon()
+        LocalSocketExporter.shared.startIfNeeded()
         
         NotificationCenter.default.addObserver(self, selector: #selector(listenForAppPause), name: .pause, object: nil)
         NSEvent.addGlobalMonitorForEvents(matching: [.keyDown, .flagsChanged]) { [weak self] event in
@@ -88,6 +89,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, UNUserNotificationCenterDele
     func applicationWillTerminate(_ aNotification: Notification) {
         modules.forEach{ $0.terminate() }
         Remote.shared.terminate()
+        LocalSocketExporter.shared.terminate()
     }
     
     deinit {

@@ -101,6 +101,10 @@ public class Sensors: Module {
     
     private func usageCallback(_ raw: Sensors_List?) {
         guard let value = raw, self.enabled else { return }
+
+        if let payload = try? JSONEncoder().encode(value) {
+            LocalSocketExporter.shared.publish(payload)
+        }
         
         self.popupView.usageCallback(value.sensors)
         self.portalView.usageCallback(value.sensors)

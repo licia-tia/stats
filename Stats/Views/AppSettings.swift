@@ -49,6 +49,11 @@ class ApplicationSettings: NSStackView {
             userDefaults?.set(newValue, forKey: "systemWidgetsUpdates_state")
         }
     }
+
+    private var localSocketExportState: Bool {
+        get { LocalSocketExporter.shared.isEnabled }
+        set { LocalSocketExporter.shared.isEnabled = newValue }
+    }
     
     private var updateSelector: NSPopUpButton?
     private var startAtLoginBtn: NSSwitch?
@@ -113,6 +118,14 @@ class ApplicationSettings: NSStackView {
                 action: #selector(self.toggleSystemWidgetsUpdatesState),
                 state: self.systemWidgetsUpdatesState
             ))
+        ]))
+
+        scrollView.stackView.addArrangedSubview(PreferencesSection(label: "Local export", [
+            PreferencesRow("Local Unix socket", component: switchView(
+                action: #selector(self.toggleLocalSocketExportState),
+                state: self.localSocketExportState
+            )),
+            PreferencesRow("Socket path", component: textView(LocalSocketExporter.shared.socketPath))
         ]))
         
         self.combinedModulesView = PreferencesSection([
@@ -491,6 +504,10 @@ class ApplicationSettings: NSStackView {
     
     @objc private func toggleSystemWidgetsUpdatesState(_ sender: NSButton) {
         self.systemWidgetsUpdatesState = sender.state == NSControl.StateValue.on
+    }
+
+    @objc private func toggleLocalSocketExportState(_ sender: NSButton) {
+        self.localSocketExportState = sender.state == NSControl.StateValue.on
     }
 }
 
